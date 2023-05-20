@@ -6,7 +6,7 @@ only prereq to test is any type of file .png, .jpg, .txt etc... that you wish to
 
 Watch the demo video, you can also try to run it yourself if you download it and try to run it, but may not work because of libraries and other python things
 
-v3 is final code
+v3 is final code, thank you :)
 
 **In what way does your project improve security, and how does it improve our school/life?**
 
