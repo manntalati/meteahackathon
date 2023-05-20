@@ -1,6 +1,6 @@
 # meteahackathon
 
-Hackathon project - Encrypted File Transfer
+Encrypted File Transfer
 
 
 **In what way does your project improve security, and how does it improve our school/life?**
