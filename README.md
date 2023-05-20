@@ -1,3 +1,3 @@
 # meteahackathon
 
-Hackathon project - Encrypted Messaging app
+Hackathon project - Encrypted File Transfer
