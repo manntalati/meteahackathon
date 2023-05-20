@@ -2,6 +2,10 @@
 
 Encrypted File Transfer
 
+only prereq to test is any type of file .png, .jpg, .txt etc... that you wish to encrypt
+
+Watch the demo video, you can also try to run it yourself if you download it and try to run it, but may not work because of libraries and other python things
+v3 is final code
 
 **In what way does your project improve security, and how does it improve our school/life?**
 
@@ -10,3 +14,5 @@ Utilizing encryption for file transmission significantly bolsters the security o
 **Tell us why you created this project, the goals, successes, and future iterations of it.**
 
 Our project was created to address the growing demand for secure data transfer in light of the expanding realm of computer science. Given the increased prevalence of malicious intenders, we aimed to tackle this issue through encrypted file transfers. Throughout the development process, we successfully achieved our objectives, enabling both senders and receivers to encrypt any desired file. Notable accomplishments include the implementation of a Tkinter-based GUI, facilitating user interaction and secure encryption transmission. Moving forward, we plan to incorporate SMTP libraries to enable direct email transmission from sender to receiver. Additionally, we intend to enhance the system by allowing users to encrypt and send multiple files simultaneously and implementing automated key rotation within the application.
+
+
