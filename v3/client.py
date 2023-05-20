@@ -26,6 +26,7 @@ def receiver_uploadEncryptedSKPath():
                                           title = "Select a File",
                                           filetypes = (("Text Files",
                                                         "*.txt*"),))
+    messagebox.showinfo(title="File Uploaded", message = encryptedSKPath + " uploaded")
 
 # Allows user to upload the Encrypted Secret File's path to the application
 def receiver_uploadSecretFilePath():
@@ -34,6 +35,8 @@ def receiver_uploadSecretFilePath():
                                           title = "Select a File",
                                           filetypes = (("AES Files",
                                                         "*.aes*"),))
+    
+    messagebox.showinfo(title="File Uploaded", message = encryptedSecretFilePath + " uploaded")
 
 #Decrypts encrypted files and sends them to the user's Downloads Folder
 def receiver_decryption():
@@ -44,7 +47,7 @@ def receiver_decryption():
 
     pyAesCrypt.decryptFile(encryptedSecretFilePath, encryptedSecretFilePath[:-4], shared_key)
 
-    messagebox.showinfo(title="File Decrypted", message = "Look in Downloads folder to find the decrypted file")
+    messagebox.showinfo(title="File Decrypted", message = "Look in same directory as encrypted file to find the decrypted file")
 
 
 # Sender
@@ -76,11 +79,15 @@ def sender_uploadPubKey():
         global publicKey
         publicKey = pubKey.read()
 
+    messagebox.showinfo(title="File Uploaded", message = pubKeyPath + " uploaded")
+
 def sender_uploadSecretFile():
     global secretFilePath
     secretFilePath = filedialog.askopenfilename(initialdir = "/",
                                           title = "Select a File",
                                           )
+    
+    messagebox.showinfo(title="File Uploaded", message = secretFilePath + " uploaded")
 
 def sender_menu():
     clear_window()
