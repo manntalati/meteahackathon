@@ -8,6 +8,8 @@ Watch the demo video, you can also try to run it yourself if you download it and
 
 v3 is final code, thank you :)
 
+All dependencies are in requirements.txt
+
 **In what way does your project improve security, and how does it improve our school/life?**
 
 Utilizing encryption for file transmission significantly bolsters the security of people and positively impacts academic and professional spheres. Encryption converts data into an indecipherable format, ensuring only authorized individuals can access the information. This prevents any unauthorized interceptions or breaches by malicious intenders. In educational contexts, encrypted file transfers safeguard sensitive student data, including grades and personal details. Similarly, in workplaces, encryption fortifies the protection of confidential documents like salary records and client information, fostering a secure and reliable environment. By implementing encryption measures, companies and clients gain peace of mind when safeguarding valuable data and can greatly enhance security in academic and professional realms.
