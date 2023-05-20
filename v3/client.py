@@ -6,26 +6,28 @@ import tkinter as tk
 from tkinter import filedialog
 from tkinter import messagebox
 
-# Receiver
 def receiver_keygen():
+    # Generates the keys required for asymmetric encryption
     global receiver_pub
     global receiver_priv
     receiver_pub, receiver_priv = rsa.newkeys(1024, poolsize=2)
     
-    # Save Public Key into a file
+    # Save Public Key into a file and sends this file to the user's Downloads folder
     with open(os.path.join(os.path.expanduser('~'), 'Downloads', 'public.pem'), mode='wb') as publicfile:
         publicfile.write(receiver_pub.save_pkcs1("PEM"))
 
     messagebox.showinfo(title="Public Key Saved", message = "Look in Downloads folder to find public key file: (public.pem). Send this file to the sender")
     
     
-def receiver_uploadEncryptedSK():
+# Allows user to upload the Encrypted Secret Key's File path to the application
+def receiver_uploadEncryptedSKPath():
     global encryptedSKPath
     encryptedSKPath = filedialog.askopenfilename(initialdir = "/",
                                           title = "Select a File",
                                           filetypes = (("Text Files",
                                                         "*.txt*"),))
-    
+
+# Allows user to upload the Encrypted Secret File's path to the application
 def receiver_uploadSecretFilePath():
     global encryptedSecretFilePath
     encryptedSecretFilePath = filedialog.askopenfilename(initialdir = "/",
@@ -33,11 +35,10 @@ def receiver_uploadSecretFilePath():
                                           filetypes = (("AES Files",
                                                         "*.aes*"),))
 
-
+#Decrypts encrypted files and sends them to the user's Downloads Folder
 def receiver_decryption():
-    with open(os.path.join(os.path.expanduser('~'), 'Downloads', 'enc_shared_key.txt'), mode='rb') as enc_shared_key:
+    with open(encryptedSKPath, mode='rb') as enc_shared_key:
         encrypted_shared_key = enc_shared_key.read()
-        print(encrypted_shared_key)
         shared_key = rsa.decrypt(encrypted_shared_key, receiver_priv).decode('utf-8')
 
 
@@ -51,13 +52,15 @@ def sender_encrypt_file():
     shared_key = str(rsa.randnum.read_random_bits(128))
     
     #encrypt file using shared key
-
     pyAesCrypt.encryptFile(secretFilePath, secretFilePath+'.aes', shared_key)
 
-    
+    #pulls public key
     public_key = rsa.PublicKey.load_pkcs1(publicKey)
 
+    #encrypts the shared key 
     encrypted_shared_key = rsa.encrypt(bytes(shared_key, 'utf-8'), public_key)
+
+
     with open(os.path.join(os.path.expanduser('~'), 'Downloads', 'enc_shared_key.txt'), mode='wb') as enc_sk:
         enc_sk.write(bytes(encrypted_shared_key))
     
@@ -72,18 +75,12 @@ def sender_uploadPubKey():
     with open(pubKeyPath, 'r') as pubKey:
         global publicKey
         publicKey = pubKey.read()
-        print(publicKey)
 
 def sender_uploadSecretFile():
     global secretFilePath
     secretFilePath = filedialog.askopenfilename(initialdir = "/",
                                           title = "Select a File",
                                           )
-    # secretFilePath = filedialog.askopenfilename(initialdir = "/",
-    #                                       title = "Select a File",
-    #                                       filetypes = (("TXT Files",
-    #                                                     "*.txt*"),))
-    print(secretFilePath)
 
 def sender_menu():
     clear_window()
@@ -109,7 +106,7 @@ def receiver_menu():
     generatePubKey = tk.Button(text = "1. Generate Public Key", height = 3, width= 30, command = receiver_keygen)
     generatePubKey.grid(row=1, column=0)
 
-    encryptedSKButton = tk.Button(text = "2. Upload Encrypted Shared Key (.txt)", height = 3, width= 30, command = receiver_uploadEncryptedSK)
+    encryptedSKButton = tk.Button(text = "2. Upload Encrypted Shared Key (.txt)", height = 3, width= 30, command = receiver_uploadEncryptedSKPath)
     encryptedSKButton.grid(row=2, column=0)
 
     encryptedFileButton = tk.Button(text = "3. Upload Encrypted File (.aes)", height = 3, width= 30, command = receiver_uploadSecretFilePath)
